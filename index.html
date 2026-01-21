@@ -309,6 +309,49 @@
             text-decoration: underline;
         }
 
+        /* TAB NAVIGATION STYLES */
+        .tab-navigation {
+            display: flex;
+            gap: 0;
+            background: #f0f4ff;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 16px 20px;
+            background: #f0f4ff;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            background: #e8eef8;
+        }
+
+        .tab-btn.active {
+            background: white;
+            border-bottom: 3px solid #764ba2;
+            color: #764ba2;
+        }
+
+        /* TEST CONTAINERS */
+        .test-container {
+            display: none;
+        }
+
+        .test-container.active {
+            display: block;
+        }
+
         @media print {
             body {
                 background: white;
@@ -356,17 +399,30 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📚 Multiple-Choice-Test</h1>
+            <h1>📚 Multiple-Choice-Tests</h1>
             <p>Interkulturelle Pädagogik im Elementarbereich</p>
             <p style="font-size: 0.95em; margin-top: 10px;">Nach den Fallsituationen von Anette Leisau</p>
+        </div>
+
+        <!-- TAB NAVIGATION -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTest('test1', event)">
+                📖 Test 1: Interkulturelle Pädagogik
+            </button>
+            <button class="tab-btn" onclick="switchTest('test2', event)">
+                🎯 Test 2: Kompetenzen
+            </button>
         </div>
 
         <div class="content">
             <button class="print-button" onclick="window.print()">🖨️ Drucken</button>
 
-            <!-- Inhaltsverzeichnis -->
+            <!-- TEST 1 -->
+            <div id="test1" class="test-container active">
+
+            <!-- Inhaltsverzeichnis Test 1 -->
             <div class="toc">
-                <h2>📋 Inhaltsverzeichnis</h2>
+                <h2>📋 Inhaltsverzeichnis - Test 1</h2>
                 <ul>
                     <li><a href="#aufgabe1">Aufgabe 1: Die neue Erzieherin</a></li>
                     <li><a href="#aufgabe2">Aufgabe 2: Ausgrenzung in der Spielecke</a></li>
@@ -1496,9 +1552,9 @@
                 <p>Zählen Sie Ihre korrekten Antworten. 1 Punkt pro Frage = max. 32 Punkte</p>
             </div>
 
-            <!-- Bewertungsschlüssel -->
+            <!-- Bewertungsschlüssel Test 1 -->
             <div style="background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 5px solid #667eea;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">📈 Bewertungsschlüssel</h3>
+                <h3 style="color: #667eea; margin-bottom: 15px;">📈 Bewertungsschlüssel Test 1</h3>
                 <ul style="list-style: none; color: #555;">
                     <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>29-32 Punkte (91-100%):</strong> Ausgezeichnet – Sehr gutes Verständnis</li>
                     <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>25-28 Punkte (78-87%):</strong> Gut – Gutes Verständnis, kleinere Lücken</li>
@@ -1508,11 +1564,514 @@
                 </ul>
             </div>
 
+            </div>
+
+            <!-- TEST 2 -->
+            <div id="test2" class="test-container">
+
+            <!-- Inhaltsverzeichnis Test 2 -->
+            <div class="toc">
+                <h2>📋 Inhaltsverzeichnis - Test 2</h2>
+                <ul>
+                    <li><a href="#aufgabe_k1">Aufgabe 1: Kognitive Kompetenzen</a></li>
+                    <li><a href="#aufgabe_k2">Aufgabe 2: Empathie und Rollendistanz</a></li>
+                    <li><a href="#aufgabe_k3">Aufgabe 3: Ambiguitätstoleranz</a></li>
+                    <li><a href="#aufgabe_k4">Aufgabe 4: Handlungskompetenzen</a></li>
+                </ul>
+            </div>
+
+            <!-- AUFGABE 1 - TEST 2 -->
+            <div class="task-section" id="aufgabe_k1">
+                <div class="task-title">✏️ Aufgabe 1: Kognitive Kompetenzen – Selbstwahrnehmung und Fremdwahrnehmung</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p><strong>Marcus</strong> ist Erzieher in einer Kita mit vielen Kindern aus verschiedenen Kulturkreisen. In einem Elterngespräch mit <strong>Frau Hassan</strong> (Mutter von Amina, 4 Jahre, arabische Familie) bemerkt er:</p>
+                    <p style="margin-top: 10px;">Marcus denkt unbewusst: <em>„Arabische Mütter sind immer sehr streng mit ihren Kindern. Das liegt in ihrer Kultur."</em></p>
+                    <p style="margin-top: 10px;">Im Gespräch stellt er fest, dass Frau Hassan sehr liebevoll mit ihrer Tochter umgeht, aber klare Grenzen setzt – ähnlich wie deutsche Mütter. Marcus merkt, dass er ein Vorurteil hatte.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Kognitive Kompetenzen:</strong> Bewusstsein über die eigene Kultur und kulturelle Normalität</li>
+                        <li><strong>Selbstreflexion:</strong> Erkennen eigener Vorurteile und stereotypischer Denkmuster</li>
+                        <li><strong>Beschreibende Wahrnehmung:</strong> Unterschiede ohne Wertung beobachten</li>
+                        <li><strong>Heterogenität innerhalb von Gruppen:</strong> Nicht alle Menschen einer Kultur sind gleich</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K1.1</span>
+                    <div class="question-text">Welche kognitive Kompetenz fehlte Marcus anfangs?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Die Fähigkeit, seine eigenen kulturellen Annahmen zu reflektieren und zu erkennen, dass er Stereotypen hatte.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Marcus hatte alle Kompetenzen – er machte einfach einen Fehler.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Er fehlte die Kompetenz, Deutsche von Arabern zu unterscheiden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Kognitive Kompetenzen sind für Erzieher unwichtig.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K1.2</span>
+                    <div class="question-text">Welche Gefahr besteht, wenn nur kognitive Kompetenzen (Wissen über Kulturen) ausgebildet werden, ohne Selbstreflexion?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Es gibt keine Gefahr – mehr Wissen ist immer besser.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Wissen über Kulturmuster kann zu Stereotypisierung führen, wenn nicht parallel die Wahrnehmung von Individualität entwickelt wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Menschen mit mehr Wissen werden immer toleranter.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Nur Handlungskompetenzen sind wichtig, kognitive Kompetenzen sind überflüssig.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K1.3</span>
+                    <div class="question-text">Welche Aspekte gehören zu den kognitiven Kompetenzen in der interkulturellen Pädagogik? (Mehrere Antworten können richtig sein)</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Wissen über Migrationsursachen, Herkunftsgesellschaften, rechtliche und soziale Status</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Auseinandersetzung mit der eigenen Kultur und den eigenen Vorurteilen</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Kenntnis verschiedener Religionen und ihre Feiertage</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk1.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Alle der obigen Antworten gehören zu kognitiven Kompetenzen</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: D</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 2 - TEST 2 -->
+            <div class="task-section" id="aufgabe_k2">
+                <div class="task-title">✏️ Aufgabe 2: Empathie und Rollendistanz – Das Individuum sehen</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>Die Erzieherin <strong>Silke</strong> beobachtet zwei Jungen in der Kita:</p>
+                    <p style="margin-top: 10px;"><strong>Fall A:</strong> <strong>Mehmet</strong> (6 Jahre, türkische Familie) spielt viel in der Bauecke und ist sehr aktiv. Silke denkt: <em>„Typisch türkisches Kind – eine starke Rolle für das Geschlecht."</em></p>
+                    <p style="margin-top: 10px;"><strong>Fall B:</strong> <strong>Jan</strong> (6 Jahre, deutsche Familie) spielt viel in der Bauecke und ist sehr aktiv. Silke beobachtet neutral: <em>„Jan hat Interesse an Konstruktionen und ist ein aktiver Typ."</em></p>
+                    <p style="margin-top: 10px;">Silke merkt ihren unterschiedlichen Blick und reflektiert ihre Rolle.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Empathie:</strong> Sich in andere Menschen hineinversetzen können und ihren kulturellen Hintergrund ernst nehmen</li>
+                        <li><strong>Rollendistanz:</strong> Das Kind als Individuum mit eigenen Wahrnehmungen sehen, nicht nur als Repräsentant seiner Kultur</li>
+                        <li><strong>Keine Verallgemeinerung:</strong> Vermeidung von Kategorisierung und Kulturalisierung</li>
+                        <li><strong>Doppelte Optik:</strong> Kultur beachten, ohne das Individuum zu vergessen</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K2.1</span>
+                    <div class="question-text">Worin bestand Silkes Fehler bei der Wahrnehmung von Mehmet?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Sie hatte keine Rollendistanz – sie beschrieb Mehmets Verhalten durch die Kulturalisation statt durch seine Individualität.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie hatte einen bösen Gedanken über Mehmet.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Mehmet ist tatsächlich zu aktiv.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Sie fehlt die Empathie-Kompetenz völlig.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K2.2</span>
+                    <div class="question-text">Wie hätte Silke mit Rollendistanz-Kompetenz Mehmets Verhalten wahrgenommen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">„Mehmet hat Spaß an Konstruktionen und ist aktiv. Das ist seine Persönlichkeit – unabhängig davon, ob seine Familie aus der Türkei kommt."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">„Das ist typisch für türkische Jungen, aber ich akzeptiere es trotzdem."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Sie sollte Mehmet kritisieren, weil sein Verhalten zu kulturalisiert ist.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Sie sollte ihn mit Jan vergleichen und kritisieren, wenn er anders ist.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K2.3</span>
+                    <div class="question-text">Was bedeutet es, beim Kind das „Individuum mit subjektiven Wahrnehmungen" zu sehen (Kompetenz der Rollendistanz)?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Kultur komplett zu ignorieren.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das Kind zunächst als Person mit eigenen Gefühlen, Gedanken und Interessen wahrzunehmen, und nur sekundär seine kulturelle Herkunft als einen Aspekt unter vielen zu berücksichtigen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Das Kind als Repräsentant seiner Kultur zu sehen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk2.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Alle Kinder als identisch wahrzunehmen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 3 - TEST 2 -->
+            <div class="task-section" id="aufgabe_k3">
+                <div class="task-title">✏️ Aufgabe 3: Ambiguitätstoleranz – Mit Widersprüchen umgehen</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>Der Erzieher <strong>Tom</strong> spricht mit <strong>Fatma</strong> (Mutter von Leyla, 5 Jahre, kurdische Familie). Im Gespräch entdeckt Tom Widersprüche:</p>
+                    <p style="margin-top: 10px;"><strong>Widerspruch 1:</strong> Fatma kritisiert Deutschland: <em>„Hier ist alles zu liberal, die Kinder machen, was sie wollen."</em> Aber später sagt sie: <em>„Bei uns daheim war es aber auch schwierig – die Schulen sind nicht gut, und die Chancen sind klein."</em></p>
+                    <p style="margin-top: 10px;"><strong>Widerspruch 2:</strong> Fatma möchte, dass Leyla Deutsch perfekt spricht, aber verbietet ihr, Deutsch mit der Mutter zu sprechen: <em>„Das verwirrt sie!"</em></p>
+                    <p style="margin-top: 10px;">Tom kann diese Widersprüche „aushalten" und versteht Fatmas Situation, ohne alles gutzuheißen.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Ambiguitätstoleranz:</strong> Die Fähigkeit, Widersprüche und Mehrdeutigkeiten auszuhalten</li>
+                        <li><strong>Nicht-Urteilen:</strong> Widersprüche respektieren, ohne alles hinzunehmen oder kritiklos zu akzeptieren</li>
+                        <li><strong>Komplexität von Migration:</strong> Menschen in Migrationssituationen erleben oft widersprüchliche Gefühle</li>
+                        <li><strong>Kritisches Hinterfragen ohne Ablehnung:</strong> Mit jemandem arbeiten, auch wenn man nicht alles akzeptiert</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K3.1</span>
+                    <div class="question-text">Welche Kompetenz hilft Tom, mit Fatmas Widersprüchen umzugehen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Ambiguitätstoleranz – die Fähigkeit, Spannungen und Mehrdeutigkeiten auszuhalten und zu respektieren.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Tom muss alle Widersprüche kritisieren und sagen, dass Fatma Unrecht hat.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Tom muss alles, was Fatma sagt, akzeptieren und unterstützen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Tom sollte Fatmas Familie verlassen und nicht mehr mit ihr arbeiten.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K3.2</span>
+                    <div class="question-text">Warum ist es ein Widerspruch, dass Fatma möchte, dass Leyla Deutsch perfekt spricht, aber gleichzeitig verbietet, Deutsch mit der Mutter zu sprechen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Es gibt keinen Widerspruch – das ist absolut logisch.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sprache lernt man durch Sprechen – das Verbieten von Deutsch mit der Mutter behindert den Deutscherwerb, obwohl Fatma diesen fördert.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Fatma ist eine schlechte Mutter.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das ist ein klassischer Fall von Rassismus.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K3.3</span>
+                    <div class="question-text">Mit welcher Haltung kann Tom mit Fatmas Widersprüchen arbeiten, ohne alles zu akzeptieren?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Mit kritischer Auseinandersetzung und Verständnis für die schwierige Migrationssituation – er kann Fatmas Perspektive respektieren, kann aber gleichzeitig pädagogische Bedenken ansprechen und alternative Wege vorstellen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Durch totale Zustimmung zu allem, was Fatma sagt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Durch totale Ablehnung und Kritik.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk3.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Durch das Ignorieren der Widersprüche.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 4 - TEST 2 -->
+            <div class="task-section" id="aufgabe_k4">
+                <div class="task-title">✏️ Aufgabe 4: Handlungskompetenzen – Praktische Umsetzung</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>Die Kita „Mehrsprachig Stark" arbeitet aktiv an Handlungskompetenzen:</p>
+                    <p style="margin-top: 10px;"><strong>Handlung 1:</strong> Die Erzieherin <strong>Anna</strong> spricht mit den Kindern in einfachen Sätzen auf Polnisch, Arabisch und Türkisch – Gruß-, Abschieds- und Dankesformeln.</p>
+                    <p style="margin-top: 10px;"><strong>Handlung 2:</strong> Die Kita plant eine Multikulturfest-Vorbereitung: Sie schaffen Begegnungsräume, wo Eltern mit Kindern gemeinsam vorlesen – in verschiedenen Sprachen.</p>
+                    <p style="margin-top: 10px;"><strong>Handlung 3:</strong> Eine Erzieherin beobachtet, dass eine Familie des Kindes Mohamed aufgrund religiöser Gründe bei einem Fest ausgeschlossen werden könnte. Sie reagiert proaktiv und spricht mit den Eltern.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Handlungskompetenzen:</strong> Praktische Umsetzung von Toleranz und Respekt</li>
+                        <li><strong>Mehrsprachigkeit fördern:</strong> Nicht nur Deutsch, sondern auch andere Sprachen verwenden</li>
+                        <li><strong>Begegnungsräume schaffen:</strong> Orte, wo echte Begegnungen möglich sind</li>
+                        <li><strong>Diskriminierung vorbeugen:</strong> Proaktiv Ausgrenzung entgegenwirken</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K4.1</span>
+                    <div class="question-text">Warum ist es eine Handlungskompetenz, wenn Anna mit Kindern Gruß- und Dankesformeln in verschiedenen Sprachen spricht?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Weil es eine konkrete, praktische Aktion ist, die Mehrsprachigkeit fördert und allen Kindern zeigt, dass ihre Sprachen wertvoll sind.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Weil Anna alle Sprachen perfekt spricht.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Weil es nur am Freitag gemacht wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das ist keine Handlungskompetenz, sondern nur Spaß.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K4.2</span>
+                    <div class="question-text">Welche Handlungskompetenzen werden in der Kita-Multikulturfest-Vorbereitung (Eltern lesen in verschiedenen Sprachen vor) praktiziert?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Beziehungsaufbau zu anders kulturell sozialisierten Menschen und Schaffung von Begegnungsräumen, wo ein respektvolles Zusammenleben gefördert wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das ist nur für deutsche Eltern eine Veranstaltung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Das ist keine Handlungskompetenz – Vorlesungen sind unimportant.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Nur Englischsprachige sollen teilnehmen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K4.3</span>
+                    <div class="question-text">Welche Handlungskompetenz übt die Erzieherin, die proaktiv mit der Familie von Mohamed spricht, um Diskriminierung zu verhindern?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Entgegenwirken wahrgenommener Diskriminierung – aktive Prävention von Ausgrenzung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie sollte nicht einmischen – das ist Privatangelegenheit.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Sie sollte Mohamed ignorieren, um Probleme zu vermeiden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das ist nicht Aufgabe der Erzieherin.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage K4.4</span>
+                    <div class="question-text">Was ist der Unterschied zwischen kognitiven Kompetenzen und Handlungskompetenzen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Kognitive: Wissen und Reflexion; Handlungs: konkrete Aktionen und praktische Umsetzung. Beide sind notwendig.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Es gibt keinen Unterschied – sie sind das Gleiche.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Nur Handlungskompetenzen sind wichtig – kognitives Wissen ist überflüssig.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="qk4.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Nur kognitive Kompetenzen sind wichtig – praktische Aktionen sind nicht nötig.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+            </div>
+
+            <div class="score-box">
+                <h2>📊 Ihre Punktzahl berechnen</h2>
+                <p>Zählen Sie Ihre korrekten Antworten. 1 Punkt pro Frage = max. 16 Punkte</p>
+            </div>
+
+            <!-- Bewertungsschlüssel Test 2 -->
+            <div style="background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">📈 Bewertungsschlüssel Test 2</h3>
+                <ul style="list-style: none; color: #555;">
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>15-16 Punkte (94-100%):</strong> Ausgezeichnet – Sehr gutes Verständnis der Kompetenzen</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>13-14 Punkte (81-88%):</strong> Gut – Gutes Verständnis, kleine Vertiefungen möglich</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>11-12 Punkte (69-75%):</strong> Befriedigend – Grundlagen verstanden, Vertiefung empfohlen</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>9-10 Punkte (56-63%):</strong> Ausreichend – Minimales Verständnis</li>
+                    <li style="padding: 10px;"><strong>&lt;9 Punkte (&lt;56%):</strong> Nicht ausreichend – Wiederholung erforderlich</li>
+                </ul>
+            </div>
+
+            </div>
+
         </div>
 
         <div class="footer">
-            <p>📚 Multiple-Choice-Test zur Interkulturellen Pädagogik im Elementarbereich</p>
-            <p>Basierend auf Fallsituationen nach Anette Leisau | Erstellt für Fortbildungen und Prüfungen</p>
+            <p>📚 Multiple-Choice-Tests zur Interkulturellen Pädagogik im Elementarbereich</p>
+            <p>Test 1: Allgemeine Pädagogik nach Anette Leisau | Test 2: Kompetenzen nach Toprak</p>
             <p style="margin-top: 15px; font-size: 0.9em;">💡 Hinweis: Diese Fragen können auch als Diskussionsgrundlage für Teambesprechungen verwendet werden.</p>
         </div>
     </div>
@@ -1522,6 +2081,25 @@
             const correctAnswer = btn.nextElementSibling;
             correctAnswer.classList.toggle('show');
             btn.textContent = correctAnswer.classList.contains('show') ? '✕ Antwort verbergen' : '✓ Antwort anzeigen';
+        }
+
+        function switchTest(testId, event) {
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Hide all test containers
+            const containers = document.querySelectorAll('.test-container');
+            containers.forEach(container => container.classList.remove('active'));
+            
+            // Show selected test
+            document.getElementById(testId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
