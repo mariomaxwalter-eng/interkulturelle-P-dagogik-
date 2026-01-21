@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple-Choice-Test: Interkulturelle Pädagogik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .task-section {
+            margin-bottom: 50px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+
+        .task-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .info-box h3 {
+            color: #764ba2;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .question-container {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .answer-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .answer-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateX(5px);
+        }
+
+        .answer-option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .answer-option label {
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .answer-letter {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 25px;
+            padding-top: 2px;
+        }
+
+        .answer-text {
+            flex: 1;
+            color: #555;
+        }
+
+        .correct-answer {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2e7d32;
+            display: none;
+            cursor: pointer;
+        }
+
+        .correct-answer.show {
+            display: block;
+        }
+
+        .correct-answer:hover {
+            background: #c8e6c9;
+        }
+
+        .reveal-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .reveal-btn:hover {
+            background: #764ba2;
+        }
+
+        .score-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .score-box h2 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .score-box p {
+            color: #856404;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .pagination button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background: #764ba2;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .print-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 20px 0;
+            transition: background 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #45a049;
+        }
+
+        .toc {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            columns: 2;
+        }
+
+        .toc li {
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .print-button,
+            .reveal-btn,
+            .pagination {
+                display: none;
+            }
+
+            .correct-answer {
+                display: block !important;
+                background: #f0f0f0;
+                border: 1px solid #999;
+                color: #000;
+            }
+
+            page-break-after: always;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .toc ul {
+                columns: 1;
+            }
+
+            .question-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Multiple-Choice-Test</h1>
+            <p>Interkulturelle Pädagogik im Elementarbereich</p>
+            <p style="font-size: 0.95em; margin-top: 10px;">Nach den Fallsituationen von Anette Leisau</p>
+        </div>
+
+        <div class="content">
+            <button class="print-button" onclick="window.print()">🖨️ Drucken</button>
+
+            <!-- Inhaltsverzeichnis -->
+            <div class="toc">
+                <h2>📋 Inhaltsverzeichnis</h2>
+                <ul>
+                    <li><a href="#aufgabe1">Aufgabe 1: Die neue Erzieherin</a></li>
+                    <li><a href="#aufgabe2">Aufgabe 2: Ausgrenzung in der Spielecke</a></li>
+                    <li><a href="#aufgabe3">Aufgabe 3: Das Sommerfest</a></li>
+                    <li><a href="#aufgabe4">Aufgabe 4: Vorurteile früh erkennen</a></li>
+                    <li><a href="#aufgabe5">Aufgabe 5: Gleichheit vs. Anerkennung</a></li>
+                    <li><a href="#aufgabe6">Aufgabe 6: Elternarbeit – Widerstand</a></li>
+                    <li><a href="#aufgabe7">Aufgabe 7: Fallvergleich</a></li>
+                    <li><a href="#zusatz">Zusatzfragen: Vertiefung</a></li>
+                </ul>
+            </div>
+
+            <!-- AUFGABE 1 -->
+            <div class="task-section" id="aufgabe1">
+                <div class="task-title">✏️ Aufgabe 1: Die neue Erzieherin – Prinzipien erkennen und begründen</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p><strong>Sarah</strong> ist seit zwei Wochen als Erzieherin in der Kita tätig. In ihrer Gruppe sind 18 Kinder im Alter von 3-6 Jahren mit unterschiedlichen familiären Hintergründen:</p>
+                    <ul>
+                        <li>Leyla (5 Jahre, Familie aus der Türkei)</li>
+                        <li>Mohammed (4 Jahre, syrische Familie)</li>
+                        <li>Anna (5 Jahre, alleinerziehende deutsche Mutter)</li>
+                        <li>Noah (6 Jahre, zwei Väter)</li>
+                        <li>Emma (4 Jahre, deutsche Familie)</li>
+                    </ul>
+                    <p style="margin-top: 12px;">Sarahs Kollegin schlägt vor: <em>„Lass doch alle Kinder ein Bild malen: Mama, Papa und Kind vor einem Haus. Das können alle gut!"</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Prinzip der Gleichheit:</strong> Alle Menschen haben gleiche Rechte und Würde</li>
+                        <li><strong>Prinzip der Anerkennung:</strong> Unterschiede werden wertgeschätzt und respektiert</li>
+                        <li><strong>Heteronormativität:</strong> Die unsichtbare Annahme, dass nur heterosexuelle Partnerschaften „normal" sind</li>
+                        <li><strong>Identitätsentwicklung:</strong> Wie frühe Erfahrungen das Selbstwertgefühl beeinflussen</li>
+                    </ul>
+                </div>
+
+                <!-- Fragen Aufgabe 1 -->
+                <div class="question-container">
+                    <span class="question-number">Frage 1.1</span>
+                    <div class="question-text">Sarahs Kollegin schlägt vor: „Lass doch alle Kinder ein Bild malen: Mama, Papa und Kind vor einem Haus." Welche Probleme würde dieser Vorschlag für Noah (Kind mit zwei Vätern) und Anna (alleinerziehende Mutter) verursachen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q1.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Der Vorschlag ist unproblematisch, da Malen alle Kinder gleichermaßen motiviert.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Der Vorschlag würde implizieren, dass nur heteronormative Familienmodelle „normal" sind und würde Noah und Anna ihre Familie als „falsch" oder „nicht normal" präsentieren, was ihre Identitätsentwicklung beeinträchtigen könnte.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Der Vorschlag könnte Probleme verursachen, weil manche Kinder nicht gerne malen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Es könnte schwierig sein, genug Malutensilien für alle Kinder bereitzustellen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 1.2</span>
+                    <div class="question-text">Welches der folgenden Projektangebote entspricht dem Prinzip der interkulturellen Pädagogik für das Thema „Familie"?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q1.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Alle Kinder malen ein standardisiertes Familienbild nach Anleitung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nur Kinder mit Migrationshintergrund erhalten spezielle Aufgaben zu ihren Familien.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Kinder werden eingeladen, ihre Familie so zu zeichnen oder zu gestalten, wie sie wirklich aussieht – mit der offenen Botschaft, dass es viele verschiedene legitime Familienformen gibt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das Thema Familie wird komplett vermieden, um Konflikte zu verhindern.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 1.3</span>
+                    <div class="question-text">In einem Projekt zur Familienvielfalt werden Bilderbücher mit verschiedenen Familienformen (alleinerziehende Eltern, gleichgeschlechtliche Paare, Großeltern als Erziehende) verwendet. Welches Prinzip der interkulturellen Pädagogik wird damit umgesetzt?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q1.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Das Prinzip der Gleichheit – indem alle Familienformen als gleichberechtigt dargestellt werden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das Prinzip der Assimilation – indem Kinder sich an die deutsche Norm anpassen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Das Prinzip der Segregation – indem verschiedene Familientypen getrennt behandelt werden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das Prinzip der Homogenität – indem versucht wird, alle Familien gleich zu machen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 1.4</span>
+                    <div class="question-text">Die Erzieherin Sarah lädt Eltern ein, eine Geschichte über ihre Familie zu erzählen (schriftlich, als Bild oder Audio). Diese Geschichten werden dann im Gruppenraum präsentiert. Welcher Effekt ergibt sich aus dieser Maßnahme?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q1.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Eltern fühlen sich überlastet und werden nicht mehr kommen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nur Eltern mit Migrationshintergrund werden berücksichtigt; deutsche Eltern spielen keine Rolle.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Alle Kinder erleben ihre Familie und die Familien ihrer Mitschüler*innen als sichtbar und wertvoll; Kinder mit Migrationshintergrund erfahren Anerkennung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q1.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Es entstehen Konflikte, weil einige Familien keine Geschichte haben.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 2 -->
+            <div class="task-section" id="aufgabe2">
+                <div class="task-title">✏️ Aufgabe 2: Ausgrenzung in der Spielecke – Eingreifen erforderlich</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>In der Kita „Regenbogen" spielt eine Gruppe von fünf Kindern in der Bauecke. Als <strong>Amir</strong> (4 Jahre, kurdische Familie, erst seit 3 Monaten in Deutschland) dazukommen möchte, sagt <strong>Luca</strong> (5 Jahre):</p>
+                    <p style="margin-top: 10px; padding: 15px; background: #fff3cd; border-radius: 5px; font-style: italic;"><strong>„Nein, du darfst nicht mitspielen. Du kannst ja gar nicht richtig Deutsch!"</strong></p>
+                    <p style="margin-top: 10px;">Die anderen Kinder nicken zustimmend. Amir zieht sich zurück und setzt sich allein in eine Ecke. Die Erzieherin <strong>Frau Müller</strong> hat die Situation beobachtet.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Sprachbasierte Diskriminierung:</strong> Sprache als Ausgrenzungskriterium</li>
+                        <li><strong>Soziale Exklusion:</strong> Ausschluss aus Gruppen und Aktivitäten</li>
+                        <li><strong>Frühe Normalisierung:</strong> Wenn Erwachsene nicht intervenieren, wird Ausgrenzung zur Norm</li>
+                        <li><strong>Mehrsprachigkeit als Ressource:</strong> Sprache sollte nicht als Defizit, sondern als Bereicherung wahrgenommen werden</li>
+                        <li><strong>Adressaten der interkulturellen Pädagogik:</strong> ALLE Personen (das Kind das ausgeschlossen wird, die ausgrenzenden Kinder, die Fachkraft, alle Zuschauer)</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 2.1</span>
+                    <div class="question-text">Luca sagt zu Amir: „Nein, du darfst nicht mitspielen. Du kannst ja gar nicht richtig Deutsch!" Welche Form der Diskriminierung liegt hier vor?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q2.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Gar keine Diskriminierung – Luca spricht nur eine harmlose Wahrheit aus.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sprachbasierte Diskriminierung und Ausgrenzung – Sprache wird als Kriterium für Nicht-Zugehörigkeit zur Spielgruppe benutzt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Normale Konfliktlösung zwischen Kindern, die sich selbst regelt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Ein Kompliment für Luca, der die Realität ausspricht.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 2.2</span>
+                    <div class="question-text">Warum ist es wichtig, dass Frau Müller sofort in die Situation eingreift, anstatt sie „von selbst lösen zu lassen"?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q2.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Weil Fachkräfte generell überprotektiv sein sollten.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Weil Ausgrenzung normalisiert wird, wenn Erwachsene nicht eingreifen. Die Botschaft an Amir wäre: „Die Kita schützt dich nicht" und an andere Kinder: „Ausgrenzung ist okay, wenn Erwachsene es erlauben."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Weil Kinder nur Probleme lösen können, wenn Erwachsene das schaffen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Weil Luca sonst das Spielen nicht mehr mag.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 2.3</span>
+                    <div class="question-text">Wie sollte Frau Müller mit den ausgrenzenden Kindern sprechen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q2.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Sie sollte Luca vor allen anderen beschämen und bestrafen, um ein Beispiel zu setzen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie sollte das Problem ignorieren und hoffen, dass die Kinder es selbst lösen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Sie sollte in einem ruhigen Ton klar sagen, dass Ausgrenzung nicht okay ist, dabei Luca nicht beschämen, sondern sein Verhalten kritisieren, und später mit ihm ein Gespräch führen, das Empathie fördert.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Sie sollte Amir isolieren, damit kein weiterer Konflikt entsteht.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 2.4</span>
+                    <div class="question-text">Wer sind die Adressaten der interkulturellen Pädagogik in dieser Ausgrenzungssituation?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q2.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Nur Amir – da er das Opfer ist.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nur Luca – da er das Problem verursacht hat.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Alle in der Situation: Amir (Erlebnis von Zugehörigkeit), Luca und die anderen Kinder (Entwicklung von Empathie), Frau Müller (Reflexion ihrer Rolle), und alle anderen Kinder (Botschaft, dass Vielfalt geschützt wird).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q2.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Niemand – dies ist ein privater Konflikt zwischen Kindern.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 3 -->
+            <div class="task-section" id="aufgabe3">
+                <div class="task-title">✏️ Aufgabe 3: Das Sommerfest – Durchgängiges Prinzip oder punktuelle Aktion?</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>Das Team der Kita „Weltentdecker" plant das jährliche Sommerfest. Die Leiterin, <strong>Frau Schmidt</strong>, schlägt vor:</p>
+                    <p style="margin-top: 10px; padding: 15px; background: #fff3cd; border-radius: 5px; font-style: italic;"><strong>„Dieses Jahr machen wir ein multikulturelles Fest! Die türkischen Eltern können türkisches Essen mitbringen, die arabischen Familien vielleicht einen Tanz zeigen, und wir dekorieren mit Flaggen aus allen Ländern!"</strong></p>
+                    <p style="margin-top: 10px;">Die Erzieherin <strong>Julia</strong> hat gerade eine Fortbildung zu interkultureller Pädagogik besucht und äußert Bedenken: <em>„Das klingt nett, aber ich glaube, das greift zu kurz. Interkulturelle Pädagogik ist mehr als ein Fest einmal im Jahr."</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Durchgängiges Prinzip:</strong> Interkulturelle Pädagogik ist nicht ein Event, sondern durchgehend in allen Bereichen präsent</li>
+                        <li><strong>Exotisierung:</strong> Kulturen mit Migrationshintergrund als „besonders" und „anders" darstellen</li>
+                        <li><strong>Normalisierung:</strong> Vielfalt als Selbstverständlichkeit zeigen</li>
+                        <li><strong>Instrumentalisierung:</strong> Familien mit Migrationshintergrund als „Ressourcen" nutzen, die ihre Kultur „bringen"</li>
+                        <li><strong>Monokulturalismus im Alltag:</strong> Wenn Vielfalt nur in Events vorkommt, bleibt der Alltag einseitig</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 3.1</span>
+                    <div class="question-text">Frau Schmidt schlägt vor: „Dieses Jahr machen wir ein multikulturelles Fest! Die türkischen Eltern können türkisches Essen mitbringen, die arabischen Familien einen Tanz zeigen, und wir dekorieren mit Flaggen aus allen Ländern!" Was ist das Hauptproblem mit diesem Ansatz?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q3.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Es ist zu aufwendig und kostet zu viel.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Es exotisiert Kulturen mit Migrationshintergrund als „besonders" und „anders", statt sie zu normalisieren. Gleichzeitig wird deutsche Kultur nicht als „spezielle Kultur" dargestellt, was impliziert, dass sie die „Norm" ist.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Alle werden sich freuen und es gibt keine Probleme.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Es ist die beste Lösung für interkulturelle Pädagogik.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 3.2</span>
+                    <div class="question-text">Nach Anette Leisau: Was ist das Problem mit „punktuellen Aktionen" wie einem marokkanischen Essen oder türkischen Tanz bei einem jährlichen Fest?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q3.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Solche Aktionen sind großartig und sollten häufiger stattfinden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie geben vor, Vielfalt zu fördern, bedeuten aber, dass Interkulturelle Pädagogik nur einmal im Jahr stattfindet, während der Alltag monokulturalist bleibt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Sie sind viel zu billig.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Sie haben überhaupt keine Bedeutung.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 3.3</span>
+                    <div class="question-text">Wie könnte das Sommerfest so gestaltet werden, dass es dem durchgängigen pädagogischen Prinzip der interkulturellen Pädagogik entspricht?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q3.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Durch noch mehr bunte Flaggen und Dekoration mit Ländersymbolen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Durch einen speziellen „Integrations-Programmpunkt" am Nachmittag.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Durch alle Bereiche des Festes interkulturell: verschiedene Musikecken (nicht nur „arabische Musik" auf einer Bühne), Buffet mit selbstverständlicher Vielfalt (nicht als „Spezial-Angebote"), diverse Familienfotos an der Wand, mehrsprachige Aushänge, Aktivitäten für alle (nicht getrennt nach Herkunft).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Durch Segregation – getrennte Bereiche für verschiedene Kulturen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 3.4</span>
+                    <div class="question-text">Nenne ein Beispiel aus dem Kita-Alltag (außerhalb von Festen), wie interkulturelle Pädagogik durchgängig umgesetzt wird:</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q3.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Die Kita teilt Tische nach Herkunftsgruppen auf, damit jede Kultur unter sich ist.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Die tägliche Begrüßung erfolgt in mehreren Sprachen, die die Kinder in der Gruppe sprechen – Mehrsprachigkeit wird zur Normalität des Alltags.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Deutsche Traditionen werden deutlich bevorzugt; andere Kulturen nur am Wochenende besprochen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q3.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Alle Rituale finden nur in Deutsch statt; andere Sprachen sind nicht erwünscht.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 4 -->
+            <div class="task-section" id="aufgabe4">
+                <div class="task-title">✏️ Aufgabe 4: Vorurteile früh erkennen – Die Puppenecke</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>In der Krippengruppe (2-3 Jahre) der Kita „Kunterbunt" gibt es verschiedene Puppen mit unterschiedlichen Hautfarben. Die Erzieherin <strong>Frau Weber</strong> beobachtet seit einigen Tagen, dass die deutschen Kinder <strong>Emma</strong> (3 Jahre) und <strong>Felix</strong> (2,5 Jahre) nur mit den hellhäutigen Puppen spielen. Wenn Frau Weber ihnen eine dunkelhäutige Puppe anbietet, sagen beide:</p>
+                    <p style="margin-top: 10px; padding: 15px; background: #fff3cd; border-radius: 5px; font-style: italic;"><strong>„Nein, die ist doof!" oder „Die mag ich nicht!"</strong></p>
+                    <p style="margin-top: 10px;">Eine Kollegin sagt zu Frau Weber: <em>„Ach, die Kinder sind doch noch so klein, die haben noch gar keine Vorurteile. Das gibt sich von selbst."</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Frühe Vorurteilsbildung:</strong> Bereits ab 2-3 Jahren entwickeln Kinder Vorurteile</li>
+                        <li><strong>Implizites Lernen:</strong> Kinder lernen unbewusst durch Beobachtung (welche Puppen bevorzugt werden, Medienrepräsentation, Haltungen von Erwachsenen)</li>
+                        <li><strong>Medienrepräsentation:</strong> Unterrepräsentation von Menschen mit dunklerer Haut in Medien und Spielzeug</li>
+                        <li><strong>Internalisierung von Rassismus:</strong> Gesellschaftliche Rassismen werden an kleine Kinder weitergegeben</li>
+                        <li><strong>Prävention vs. Reparatur:</strong> Frühe Intervention ist leichter als später Rassismus zu korrigieren</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 4.1</span>
+                    <div class="question-text">Eine Kollegin sagt zu Frau Weber: „Ach, die Kinder sind doch noch so klein, die haben noch gar keine Vorurteile. Das gibt sich von selbst." Ist diese Aussage korrekt?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q4.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Ja, unter 3 Jahren gibt es noch keine Vorurteile.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nein – bereits im Alter von 2-3 Jahren entwickeln Kinder ein feines Gespür für Unterschiede und die Haltungen der Erwachsenen gegenüber diesen Unterschieden. Sie lernen implizit, welche Merkmale als „normal" und welche als „anders" bewertet werden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Vorurteile entstehen erst in der Grundschule.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Kinder haben niemals Vorurteile – nur Erwachsene haben sie.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 4.2</span>
+                    <div class="question-text">Warum lehnen Emma und Felix die dunkelhäutigen Puppen mit den Worten „Das ist doof!" ab? Welche möglichen Quellen gibt es für dieses Verhalten?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q4.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Die Kinder wurden böse gezogen und sind rassistisch.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie bemerken reflexhaft, dass in ihrem Umfeld (Medien, Bücher, Spielzeug, implizite Botschaften von Erwachsenen) hellhäutige Menschen überrepräsentiert sind und als „normal" dargestellt werden – dunkelhäutige Menschen als Abweichung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Es ist genetisch bedingt – manche Menschen mögen dunklere Hautfarben nicht.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Es ist völlig harmlos und wird sich von selbst geben.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 4.3</span>
+                    <div class="question-text">Warum ist es wichtig, dass Frau Weber JETZT pädagogisch handelt und nicht wartet, bis die Kinder älter sind?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q4.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Weil es später zu spät ist – Vorurteile, die nicht früh korrigiert werden, verfestigen sich zu stabilen Überzeugungen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Weil Kinder im Kindergarten keine Probleme haben, deshalb müssen wir nicht handeln.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Weil Erzieherinnen grundsätzlich zu viel Zeit haben.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Weil es keinen Unterschied macht, wann wir handeln.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 4.4</span>
+                    <div class="question-text">Welche Intervention von Frau Weber könnte am wirkungsvollsten sein, um die Kinder altersgerecht für Vielfalt zu sensibilisieren?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q4.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Ein langer Vortrag über Rassismus.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Bestrafung der Kinder, weil sie Vorurteile äußern.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Modelverhalten: Frau Weber spielt selbst regelmäßig mit den dunkelhäutigen Puppen, präsentiert sie liebevoll und positiv, und begleitet dies durch diverse Bilderbücher, in denen verschiedene Hautfarben normal und positiv dargestellt werden.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q4.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das Thema komplett ignorieren.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 5 -->
+            <div class="task-section" id="aufgabe5">
+                <div class="task-title">✏️ Aufgabe 5: Gleichheit vs. Anerkennung – Ein Dilemma</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>In der Kita „Miteinander" wird gerade das Mittagessen vorbereitet. Es gibt Schweinefleisch mit Kartoffeln und Gemüse. <strong>Fatima</strong> (4 Jahre, muslimische Familie) und <strong>David</strong> (5 Jahre, jüdische Familie) dürfen aus religiösen Gründen kein Schweinefleisch essen und bekommen eine vegetarische Alternative.</p>
+                    <p style="margin-top: 10px;"><strong>Leon</strong> (5 Jahre) beschwert sich:</p>
+                    <p style="margin-top: 10px; padding: 15px; background: #fff3cd; border-radius: 5px; font-style: italic;"><strong>„Das ist unfair! Warum bekommen Fatima und David was anderes? Wir sollen doch alle gleich sein!"</strong></p>
+                    <p style="margin-top: 10px;">Die Erzieherin <strong>Frau Hoffmann</strong> ist unsicher, wie sie reagieren soll.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Echte Gleichheit ≠ gleiche Behandlung:</strong> Manchmal muss man unterschiedlich handeln, um Gleichheit zu ermöglichen</li>
+                        <li><strong>Religiöse Rechte:</strong> Rechte auf Religionsfreiheit und -ausübung</li>
+                        <li><strong>Paradox der Gleichheit:</strong> Wenn man ALLE Menschen gleich BEHANDELT, kann man Ungleichheit ERZEUGEN</li>
+                        <li><strong>Kindgerechte Erklärung:</strong> Wie man komplexe Konzepte verständlich macht</li>
+                        <li><strong>Prävention durch Information:</strong> Wenn Kinder wissen, warum Unterschiede existieren, akzeptieren sie sie leichter</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 5.1</span>
+                    <div class="question-text">Leon beschwert sich: „Das ist unfair! Warum bekommen Fatima und David was anderes?" Welche beiden Prinzipien der interkulturellen Pädagogik spielen hier eine Rolle?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q5.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Das Prinzip der Strafe und das Prinzip der Bevorzugung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das Prinzip der Gleichheit (alle haben die gleichen Rechte) UND das Prinzip der Anerkennung (Unterschiede und besondere Bedürfnisse werden respektiert).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Das Prinzip der Segregation und das Prinzip der Assimilation.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Gar kein Prinzip – es ist einfach unfair.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 5.2</span>
+                    <div class="question-text">Ist es diskriminierend, dass Fatima und David wegen ihrer Religion unterschiedliches Essen bekommen?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q5.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Ja, absolut – das ist klare Diskriminierung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nein – das ist das Gegenteil: Wenn man sie zwingen würde, Schweinefleisch zu essen, würde man ihre religiösen Rechte verletzen. Unterschiedliche Behandlung kann notwendig sein, um echte Gleichheit zu ermöglichen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Es ist egal – Essen ist unwichtig.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Nur wenn Fatima und David beschweren sich.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 5.3</span>
+                    <div class="question-text">Welche der folgenden Antworten würde Frau Hoffmann Leon geben, um ein altersgerechtes Verständnis von Gleichheit zu fördern?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q5.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">„Das ist nicht deine Angelegenheit, Leon – frag deine Mutter!"</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">„Das ist unfair und Fatima und David bekommen Bevorzugung."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">„Das ist eine gute Frage! Echte Gleichheit bedeutet nicht, dass alle das Gleiche essen, sondern dass es jedem Kind gut geht. Fatima und David können aus religiösen Gründen kein Schweinefleisch essen – wir respektieren das, damit ihnen auch die Mahlzeit Spaß macht. Das ist gerecht!"</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">„Gleichheit ist ein schwieriges Konzept – das erklär ich dir später."</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 5.4</span>
+                    <div class="question-text">Wie könnte die Kita solche Situationen in Zukunft präventiv besser vorbereiten?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q5.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Durch noch mehr Regeln und Verbote.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Durch ein proaktives Kreisgespräch zu Schuljahresbeginn, in dem erklärt wird, dass es in der Gruppe verschiedene Religionen gibt mit verschiedenen Essensregeln – und dass das normal und wertvoll ist; plus transparente Menuplanung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Durch totale Vermeidung des Themas Essen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q5.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Indem alle Kinder das gleiche Essen bekommen, unabhängig von religiösen Bedürfnissen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 6 -->
+            <div class="task-section" id="aufgabe6">
+                <div class="task-title">✏️ Aufgabe 6: Elternarbeit – Widerstand begegnen</div>
+                
+                <div class="info-box">
+                    <h3>📖 Fallsituation</h3>
+                    <p>Die Kita „Vielfalt" möchte mehrsprachige Aushänge in verschiedenen Sprachen (Türkisch, Arabisch, Polnisch, Deutsch) im Eingangsbereich anbringen. Außerdem plant das Team, Bilderbücher in verschiedenen Sprachen anzuschaffen und eine „Sprachecke" einzurichten, wo Eltern mit Kindern in ihrer Familiensprache vorlesen können.</p>
+                    <p style="margin-top: 10px;"><strong>Frau Berger</strong>, Mutter von Tim (4 Jahre), beschwert sich beim Elternabend:</p>
+                    <p style="margin-top: 10px; padding: 15px; background: #fff3cd; border-radius: 5px; font-style: italic;"><strong>„Wir sind hier in Deutschland! Die Kinder sollen hier Deutsch lernen. Wenn wir jetzt noch andere Sprachen fördern, lernen die ausländischen Kinder doch nie richtig Deutsch! Außerdem verstehe ich diese Aushänge dann ja selbst nicht mehr."</strong></p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Bilingualismus:</strong> Das Sprechen von zwei Sprachen – verstärkt statt behindert Deutscherwerb</li>
+                        <li><strong>Familiensprache als Grundlage:</strong> Die erste Sprache ist Basis für alle weiteren Sprachen</li>
+                        <li><strong>Identität und Sprache:</strong> Sprache ist mit Familie, Liebe, Sicherheit verbunden</li>
+                        <li><strong>Vorurteile und Ängste von Eltern:</strong> Auch deutsche Eltern sind Adressaten der interkulturellen Pädagogik</li>
+                        <li><strong>Mehrsprachigkeit als Bereicherung:</strong> Alle Kinder profitieren von Multilingualismus</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 6.1</span>
+                    <div class="question-text">Frau Berger beschwert sich: „Die Kinder sollen hier Deutsch lernen. Wenn wir jetzt noch andere Sprachen fördern, lernen die ausländischen Kinder nie richtig Deutsch!" Ist dieses Argument korrekt?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q6.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Ja, absolut. Mehrsprachigkeit behindert den Deutscherwerb.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nein – Forschung zeigt, dass Kinder, die ihre Familiensprache sprechen, BESSER Deutsch lernen. Bilingualismus verstärkt statt behindert Deutschkompetenzen. Die Familiensprache ist Grundlage für den Deutscherwerb.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Es ist egal, welche Sprache Kinder sprechen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Nur Deutsch ist wichtig – alle anderen Sprachen sind unnötig.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 6.2</span>
+                    <div class="question-text">Die Kita plant mehrsprachige Aushänge in verschiedenen Sprachen. Frau Berger sagt: „Ich verstehe die Aushänge in anderen Sprachen nicht mehr." Wie sollte die Kita-Leitung antworten?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q6.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">„Pech – das ist jetzt so!"</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">„Sie können weiterhin alle Aushänge auf Deutsch lesen. Zusätzlich sind auch andere Sprachen vorhanden – das schließt Sie nicht aus, sondern ermöglicht Inklusion für andere Eltern. Das ist ein Standard in mehrsprachigen Gesellschaften."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">„Wenn Sie es nicht verstehen, sind Sie hier nicht willkommen."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">„Wir werden keine mehrsprachigen Aushänge anbringen, um Sie nicht zu verwirren."</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 6.3</span>
+                    <div class="question-text">Nach Leisau: Warum ist die Wertschätzung der Familiensprache wichtig für die Identitätsentwicklung von Kindern mit Migrationshintergrund?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q6.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Weil sie eine längere Schulkarriere haben.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Weil Sprache und Identität untrennbar verbunden sind – die Familiensprache ist der erste emotionale Raum und mit Familie, Liebe und Sicherheit verbunden. Wenn die Institution diese Sprache nicht wertschätzt, signalisiert sie implizit: „Deine Familie ist nicht wichtig."</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Weil es Eltern amüsiert.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Weil es keinen Unterschied macht.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 6.4</span>
+                    <div class="question-text">Profitieren deutsche Kinder von mehrsprachigen Angeboten in der Kita?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q6.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Nein, das verwirrt sie nur.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Ja – Umgang mit verschiedenen Sprachen trainiert das Gehirn (kognitives Training), reduziert Vorurteile, und bereitet auf eine globale Gesellschaft vor.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Nur wenn ihre Eltern selbst mehrsprachig sind.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q6.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Mehrsprachigkeit ist nur für Kinder mit Migrationshintergrund relevant.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- AUFGABE 7 -->
+            <div class="task-section" id="aufgabe7">
+                <div class="task-title">✏️ Aufgabe 7: Fallvergleich und Handlungsempfehlungen</div>
+                
+                <div class="info-box">
+                    <h3>📖 Drei Kurzfälle</h3>
+                    <p><strong>Fall A:</strong> In der Kita wird St. Martin gefeiert. Alle Kinder basteln Laternen und ziehen singend durch die Straßen. Die muslimischen Familien werden nicht gefragt, ob sie an dem christlichen Fest teilnehmen möchten.</p>
+                    <p style="margin-top: 15px;"><strong>Fall B:</strong> Die Erzieherin sagt zu allen Kindern: „Schaut mal, wir sind doch alle gleich! Eure Hautfarbe ist doch gar nicht wichtig!" Als ein Kind fragt, warum Amina dunklere Haut hat als Emma, wechselt die Erzieherin das Thema.</p>
+                    <p style="margin-top: 15px;"><strong>Fall C:</strong> In der Kita gibt es nur deutschsprachige Bilderbücher mit ausschließlich hellhäutigen Protagonist*innen. Auf die Frage einer Mutter mit türkischem Hintergrund, ob es auch türkische Bücher gibt, antwortet die Leitung: „Wir behandeln hier alle Kinder gleich, da machen wir keine Unterschiede."</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Zentrale Konzepte</h3>
+                    <ul>
+                        <li><strong>Colorblindness:</strong> Die problematische Strategie, Unterschiede zu ignorieren</li>
+                        <li><strong>Strukturelle Diskriminierung:</strong> Diskriminierung durch Materialauswahl und Strukturen</li>
+                        <li><strong>Religionsfreiheit:</strong> Das Recht, nicht an religiösen Veranstaltungen teilnehmen zu müssen</li>
+                        <li><strong>Repräsentation:</strong> Wer wird in Materialien sichtbar gemacht – und wer nicht</li>
+                        <li><strong>Gemeinsames Missverständnis:</strong> Das Missverständnis von Gleichheit als „Ignorieren von Unterschieden"</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 7.1</span>
+                    <div class="question-text">Fall A: Die Kita feiert St. Martin – ein christliches Fest. Muslimische Familien werden bei der Planung nicht konsultiert. Welches Prinzip der interkulturellen Pädagogik wird verletzt?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q7.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Das Prinzip der Effizienz – weil Planung mehr Zeit kostet.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das Prinzip der Anerkennung von Vielfalt – weil Familien mit anderen Religionen nicht einbezogen werden und implizit ausgeschlossen wirken.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Es wird kein Prinzip verletzt – das ist vollkommen okay.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Das Prinzip der Modernität – weil alte Traditionen nicht gut sind.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 7.2</span>
+                    <div class="question-text">Fall B: Eine Erzieherin sagt: „Schaut mal, wir sind doch alle gleich! Eure Hautfarbe ist doch gar nicht wichtig!" Sie wechselt das Thema, als ein Kind fragt, warum Amina dunklere Haut hat. Welches Konzept wird hier missverstanden?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q7.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Das Verständnis von Gleichheit – die Erzieherin verwechselt echte Gleichheit mit „Colorblindness" (Unterschiede ignorieren).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Das ist perfektes pädagogisches Vorgehen.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Die Erzieherin hat Recht – Unterschiede sind unwichtig.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Dies ist eine großartige Anti-Rassismus-Strategie.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: A</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 7.3</span>
+                    <div class="question-text">Fall C: Die Kita hat nur deutschsprachige Bilderbücher mit ausschließlich hellhäutigen Protagonist*innen. Die Leitung sagt: „Wir behandeln hier alle Kinder gleich, da machen wir keine Unterschiede." Welches Problem liegt hier vor?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q7.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Es gibt kein Problem – das ist perfekt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Die Leitung missversteht Gleichheit als „Ignoranz gegenüber Unterschieden". Durch Materialauswahl wird subtil signalisiert, dass hellhäutige/deutsche Kultur die Norm ist. Kinder mit Migrationshintergrund sehen sich nie repräsentiert – das ist strukturelle Diskriminierung.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Das ist die beste Lösung für Inklusion.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Bilderbücher sind nicht wichtig für Kinder.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 7.4</span>
+                    <div class="question-text">Was haben alle drei Fälle (St. Martin ohne Konsultation, Colorblindness, nur deutschsprachige Bücher) gemeinsam?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q7.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Sie sind alle perfekte Beispiele für interkulturelle Pädagogik.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Sie basieren auf dem Missverständnis von Gleichheit als „Behandlung aller gleich" statt als „Anerkennung von Unterschieden für echte Gerechtigkeit". Alle ignorieren die Realität von Vielfalt.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Sie sind überhaupt nicht problematisch.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q7.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Es gibt keinen Zusammenhang zwischen den Fällen.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- ZUSATZFRAGEN -->
+            <div class="task-section" id="zusatz">
+                <div class="task-title">✏️ Zusatzfragen: Vertiefung</div>
+                
+                <div class="info-box">
+                    <h3>📖 Schlüsselkonzepte zur Vertiefung</h3>
+                    <ul>
+                        <li><strong>Durchgängiges Prinzip:</strong> Interkulturelle Pädagogik in allen Bereichen präsent</li>
+                        <li><strong>Adressaten:</strong> ALLE Personen – nicht nur Kinder mit Migrationshintergrund</li>
+                        <li><strong>Assimilation vs. Integration:</strong> Gegensätze und Ziele der interkulturellen Pädagogik</li>
+                        <li><strong>Repräsentation:</strong> Wer wird in Materialien sichtbar gemacht</li>
+                    </ul>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 8.1</span>
+                    <div class="question-text">Was bedeutet „durchgängiges Prinzip" im Zusammenhang mit interkultureller Pädagogik?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q8.1">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Dass das Thema einmal pro Woche behandelt wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.1">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Dass interkulturelle Pädagogik nicht isoliert in speziellen Events stattfindet, sondern durchgehend in allen Bereichen der Kita-Arbeit präsent ist (Raumgestaltung, Materialien, Sprache, Essen, Rituale, Elternarbeit, Team).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.1">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Dass nur Kinder mit Migrationshintergrund davon profitieren.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.1">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Dass es sehr anstrengend und unrealistisch ist.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 8.2</span>
+                    <div class="question-text">Nach Leisau: Wer sind die Adressaten der interkulturellen Pädagogik?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q8.2">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Nur Kinder mit Migrationshintergrund.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.2">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Nur deutsche Kinder.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.2">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">ALLE – Kinder mit und ohne Migrationshintergrund, Eltern, Fachkräfte, das gesamte System. Weil es um die Entwicklung einer Gesellschaft geht, in der Vielfalt als Normalität und Bereicherung verstanden wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.2">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Fachkräfte spielen keine Rolle.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: C</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 8.3</span>
+                    <div class="question-text">Wie unterscheidet sich Assimilation von Integration im Kontext der interkulturellen Pädagogik?</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q8.3">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Assimilation und Integration sind das gleiche.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.3">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Assimilation: Menschen geben ihre Kultur/Sprache auf und passen sich an (problematisch). Integration: Menschen entwickeln BEIDE Sprachen/Kulturen und können in beiden Welten handlungsfähig sein (das Ziel von interkultureller Pädagogik).</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.3">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Integration ist das Gegenteil von Assimilation, ist aber auch nicht erwünscht.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.3">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Beides ist für Kinder schädlich.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+
+                <div class="question-container">
+                    <span class="question-number">Frage 8.4</span>
+                    <div class="question-text">Ein Bilderbuch zeigt eine Familie mit schwarzer Mutter, weißem Vater und gemischtem Kind. Dies ist ein Beispiel für:</div>
+                    <div class="answer-options">
+                        <label class="answer-option">
+                            <input type="radio" name="q8.4">
+                            <span class="answer-letter">A)</span>
+                            <span class="answer-text">Negative Repräsentation, die vermieden werden sollte.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.4">
+                            <span class="answer-letter">B)</span>
+                            <span class="answer-text">Positive interkulturelle Pädagogik – weil die Vielfalt von Familienformen und Partnerschaften normal dargestellt wird.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.4">
+                            <span class="answer-letter">C)</span>
+                            <span class="answer-text">Ein Problem, weil Mischehen problematisch sind.</span>
+                        </label>
+                        <label class="answer-option">
+                            <input type="radio" name="q8.4">
+                            <span class="answer-letter">D)</span>
+                            <span class="answer-text">Etwas, das Kinder verwirrt.</span>
+                        </label>
+                    </div>
+                    <button class="reveal-btn" onclick="showAnswer(this)">✓ Antwort anzeigen</button>
+                    <div class="correct-answer">✓ <strong>Korrekte Antwort: B</strong></div>
+                </div>
+            </div>
+
+            <!-- Score Box -->
+            <div class="score-box">
+                <h2>📊 Ihre Punktzahl berechnen</h2>
+                <p>Zählen Sie Ihre korrekten Antworten. 1 Punkt pro Frage = max. 32 Punkte</p>
+            </div>
+
+            <!-- Bewertungsschlüssel -->
+            <div style="background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">📈 Bewertungsschlüssel</h3>
+                <ul style="list-style: none; color: #555;">
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>29-32 Punkte (91-100%):</strong> Ausgezeichnet – Sehr gutes Verständnis</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>25-28 Punkte (78-87%):</strong> Gut – Gutes Verständnis, kleinere Lücken</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>21-24 Punkte (65-75%):</strong> Befriedigend – Grundlagen verstanden, Vertiefung nötig</li>
+                    <li style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><strong>17-20 Punkte (53-62%):</strong> Ausreichend – Minimales Verständnis</li>
+                    <li style="padding: 10px;"><strong>&lt;17 Punkte (&lt;53%):</strong> Nicht ausreichend – Wiederholung erforderlich</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>📚 Multiple-Choice-Test zur Interkulturellen Pädagogik im Elementarbereich</p>
+            <p>Basierend auf Fallsituationen nach Anette Leisau | Erstellt für Fortbildungen und Prüfungen</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">💡 Hinweis: Diese Fragen können auch als Diskussionsgrundlage für Teambesprechungen verwendet werden.</p>
+        </div>
+    </div>
+
+    <script>
+        function showAnswer(btn) {
+            const correctAnswer = btn.nextElementSibling;
+            correctAnswer.classList.toggle('show');
+            btn.textContent = correctAnswer.classList.contains('show') ? '✕ Antwort verbergen' : '✓ Antwort anzeigen';
+        }
+    </script>
+</body>
+</html>
